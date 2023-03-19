@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
-public class SavedLocation {
+import java.io.Serializable;
+
+
+//Uses Serializable Interface
+public class SavedLocation implements Serializable {
 
     private String id;
     private double longitude;
@@ -12,4 +16,19 @@ public class SavedLocation {
         this.longitude = longitude;
     }
 
+
+    public String toString() {
+        return id;
+    }
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

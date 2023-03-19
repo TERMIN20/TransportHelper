@@ -23,6 +23,7 @@
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -32,8 +33,7 @@
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/query_text"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/query_text">
 
         <EditText
             android:id="@+id/address_city"
@@ -44,8 +44,7 @@
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/address_state"
@@ -56,8 +55,7 @@
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address_city"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/address_city" />
 
         <EditText
             android:id="@+id/address_zip"
@@ -68,8 +66,7 @@
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address_state"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/address_state" />
 
         <EditText
             android:id="@+id/address_apartment"
@@ -80,8 +77,7 @@
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address_zip"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/address_zip" />
 
         <TextView
             android:id="@+id/full_address"
@@ -93,21 +89,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/address_apartment"
-            tools:visibility="visible"
-            />
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/pin_correction_note"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/address_autofill_pin_correction_note"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/full_address"
-            tools:visibility="visible"
-            />
+            tools:visibility="visible" />
 
         <com.mapbox.maps.MapView
             android:id="@+id/map"
@@ -116,8 +110,7 @@
             android:layout_margin="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pin_correction_note"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/pin_correction_note" />
 
         <ImageView
             android:id="@+id/map_pin"
@@ -128,8 +121,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/map_center"
             app:layout_constraintEnd_toEndOf="@+id/map"
-            app:layout_constraintStart_toStartOf="@+id/map"
-            />
+            app:layout_constraintStart_toStartOf="@+id/map" />
 
         <Space
             android:id="@+id/map_center"
@@ -138,8 +130,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/map"
             app:layout_constraintEnd_toEndOf="@+id/map"
             app:layout_constraintStart_toStartOf="@+id/map"
-            app:layout_constraintTop_toTopOf="@+id/map"
-            />
+            app:layout_constraintTop_toTopOf="@+id/map" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="336dp"
+            tools:layout_editor_absoluteY="235dp">
+
+        </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.mapbox.search.ui.view.SearchResultsView
@@ -171,4 +170,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/locationNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:hint="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="-5.0"
+        tools:layout_editor_absoluteX="0dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

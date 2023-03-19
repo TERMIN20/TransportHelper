@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,6 +20,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.internal.ViewUtils.hideKeyboard
+import com.google.android.material.textfield.TextInputEditText
 import com.mapbox.android.core.location.LocationEngineProvider
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
@@ -204,10 +206,19 @@ class AddLocationActivity : AppCompatActivity() {
         hideKeyboard()
 
         val confirmLocationButton = findViewById<FloatingActionButton>(R.id.confirmLocation)
+        val idText = findViewById<TextInputEditText>(R.id.locationNameText)
 
+        //Make Location Object
         confirmLocationButton.setOnClickListener {
             Toast.makeText(applicationContext, "yay", Toast.LENGTH_SHORT).show()
-            Log.d("location", suggestion.coordinate.toString())
+
+            val intent = Intent(this, RouteActivity::class.java)
+
+            val curObj = SavedLocation(idText.text.toString(), suggestion.coordinate.longitude(), suggestion.coordinate.latitude())
+
+
+            intent.putExtra("loc", curObj)
+            startActivity(intent)
         }
     }
 
