@@ -2,23 +2,19 @@ package com.example.myapplication
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.internal.bind.TypeAdapters.URI
+import androidx.collection.CircularArray
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
-import com.mapbox.maps.MapboxMap
 import com.mapbox.maps.Style
-import com.mapbox.maps.extension.style.expressions.dsl.generated.get
-import com.mapbox.maps.extension.style.expressions.dsl.generated.literal
 import com.mapbox.maps.extension.style.layers.generated.circleLayer
-import com.mapbox.maps.extension.style.sources.addSource
-import com.mapbox.maps.extension.style.sources.generated.GeoJsonSource
 import com.mapbox.maps.extension.style.sources.generated.geoJsonSource
 import com.mapbox.maps.extension.style.style
-import com.mapbox.maps.plugin.delegates.listeners.OnMapLoadErrorListener
-import java.net.URI
-import java.net.URISyntaxException
+import kotlinx.coroutines.runBlocking
+import org.json.JSONException
+import java.util.*
 
 
 var mapView: MapView? = null
@@ -45,7 +41,6 @@ class MapActivity : AppCompatActivity() {
         //Applying change
         mapView?.getMapboxMap()?.setCamera(initialCameraOptions)
 
-
         mapView?.getMapboxMap()?.loadStyle(
             style(styleUri = Style.TRAFFIC_DAY) {
                 +geoJsonSource(id = "transitStops") {
@@ -53,9 +48,9 @@ class MapActivity : AppCompatActivity() {
                     cluster(true)
                 }
                 +circleLayer(layerId = "transitCircles", sourceId = "transitStops") {
-                    circleRadius(20.0)
-                    circleColor(Color.RED)
-                    circleOpacity(0.3)
+                    circleRadius(7.0)
+                    circleColor(Color.BLUE)
+                    circleOpacity(0.5)
                     circleStrokeColor(Color.WHITE)
                 }
             },
@@ -65,7 +60,6 @@ class MapActivity : AppCompatActivity() {
                 }
             }
         )
-
 
 
 //        mapView?.getMapboxMap()?.getStyle{
@@ -79,6 +73,10 @@ class MapActivity : AppCompatActivity() {
 //            }
 //        }
 
+
+    }
+
+    private fun addRelevant() = runBlocking {
 
     }
 

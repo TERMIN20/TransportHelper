@@ -31,10 +31,20 @@
         android:id="@+id/button_map"
         android:layout_width="139dp"
         android:layout_height="131dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="144dp"
         android:text="MAP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_route"
+        android:layout_width="139dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="52dp"
+        android:text="ROUTE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_map" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

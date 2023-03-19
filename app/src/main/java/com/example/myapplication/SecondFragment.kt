@@ -43,10 +43,10 @@ class SecondFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.buttonRoute.setOnClickListener {
+            val intent = Intent(activity, RouteActivity::class.java)
+            startActivity(intent)
         }
-
 
     }
 

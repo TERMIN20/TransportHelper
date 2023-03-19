@@ -46,6 +46,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     implementation 'com.mapbox.maps:android:10.11.1'
+    implementation "com.mapbox.search:autofill:1.0.0-rc.2"
+    implementation "com.mapbox.search:discover:1.0.0-rc.2"
+    implementation "com.mapbox.search:place-autocomplete:1.0.0-rc.2"
+    implementation "com.mapbox.search:mapbox-search-android:1.0.0-rc.2"
+    implementation "com.mapbox.search:mapbox-search-android-ui:1.0.0-rc.2"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
