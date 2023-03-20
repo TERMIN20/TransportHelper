@@ -48,7 +48,7 @@ class FirstFragment : Fragment() {
 
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             //Toast.makeText(activity, binding.etUserName.text, Toast.LENGTH_LONG).show()
-            Toast.makeText(activity, binding.etPassword.text, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, binding.etPassword.text, Toast.LENGTH_SHORT).show()
         }
     }
 

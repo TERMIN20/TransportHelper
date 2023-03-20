@@ -28,6 +28,9 @@ class MapActivity : AppCompatActivity() {
         setContentView(R.layout.map_activity)
         mapView = findViewById(R.id.mapView)
 
+
+
+
         //Setting Map Camera to Seattle
         val initialCameraOptions = CameraOptions.Builder()
             .center(
@@ -42,7 +45,7 @@ class MapActivity : AppCompatActivity() {
         mapView?.getMapboxMap()?.setCamera(initialCameraOptions)
 
         mapView?.getMapboxMap()?.loadStyle(
-            style(styleUri = Style.TRAFFIC_DAY) {
+            style(styleUri = Style.MAPBOX_STREETS) {
                 +geoJsonSource(id = "transitStops") {
                     url("asset://Transit_Stops_for_King_County_Metro___transitstop_point.geojson")
                     cluster(true)

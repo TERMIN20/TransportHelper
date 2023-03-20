@@ -21,6 +21,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
 import com.mapbox.android.core.location.LocationEngineProvider
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
@@ -35,8 +36,15 @@ import com.mapbox.search.ui.adapter.autofill.AddressAutofillUiAdapter
 import com.mapbox.search.ui.view.CommonSearchViewConfiguration
 import com.mapbox.search.ui.view.DistanceUnitType
 import com.mapbox.search.ui.view.SearchResultsView
+import java.io.BufferedWriter
+import java.io.FileWriter
+import java.io.Writer
 
 
+/*
+CONTAINS CODE FROM MAPBOX ANDROID SDK DOCUMENTATION
+
+ */
 
 class AddLocationActivity : AppCompatActivity() {
     private lateinit var addressAutofill: AddressAutofill
@@ -212,13 +220,25 @@ class AddLocationActivity : AppCompatActivity() {
         confirmLocationButton.setOnClickListener {
             Toast.makeText(applicationContext, "yay", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, RouteActivity::class.java)
 
+            val p1lat = intent.getDoubleExtra("p1lat", 69.420)
+            val p1long = intent.getDoubleExtra("p1long", 69.420)
+
+            val intentLoc = Intent(this, RouteActivity::class.java)
+
+            if(intent.hasExtra("locButton")){
+                Log.d("buttonIntent", "button1")
+                intentLoc.putExtra("spinnerLoc", 1)
+            } else{
+                Log.d("buttonIntent", "button2")
+                intentLoc.putExtra("p1latBack", p1lat)
+                intentLoc.putExtra("p1longBack", p1long)
+            }
             val curObj = SavedLocation(idText.text.toString(), suggestion.coordinate.longitude(), suggestion.coordinate.latitude())
 
+            intentLoc.putExtra("loc", curObj)
 
-            intent.putExtra("loc", curObj)
-            startActivity(intent)
+            startActivity(intentLoc)
         }
     }
 
@@ -235,3 +255,5 @@ class AddLocationActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
+
+

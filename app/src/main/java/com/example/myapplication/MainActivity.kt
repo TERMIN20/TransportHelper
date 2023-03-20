@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    public val permLocationArr1 = arrayOfNulls<SavedLocation>(1)
+    public val permLocationArr2 = arrayOfNulls<SavedLocation>(1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
