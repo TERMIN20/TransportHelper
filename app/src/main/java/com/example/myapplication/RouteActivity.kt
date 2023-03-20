@@ -24,6 +24,9 @@ class RouteActivity : AppCompatActivity() {
     var spinner1Edit = 0
     var spinner2Edit = 0
 
+    var p1longBack: Double = 0.0
+    var p1latBack: Double = 0.0
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,8 +127,8 @@ class RouteActivity : AppCompatActivity() {
         if(classMain.permLocationArr2[0] != null) {
             Log.d("locArr 2", "msg")
 
-            val p1latBack = intent.getDoubleExtra("p1latBack", 6.9)
-            val p1longBack = intent.getDoubleExtra("p1longBack", 6.9)
+            p1latBack = intent.getDoubleExtra("p1latBack", 6.9)
+            p1longBack = intent.getDoubleExtra("p1longBack", 6.9)
 
             Log.d("permloc", " " + p1latBack + " " + p1longBack + " " + p1long + " " + p1lat)
 
@@ -153,16 +156,19 @@ class RouteActivity : AppCompatActivity() {
             val intent = Intent(this, AddLocationActivity::class.java)
             intent.putExtra("p1lat", p1lat)
             intent.putExtra("p1long", p1long)
+            Log.d("Coords_pre_presend", "p1: " + p1long + " " + p1lat)
             startActivity(intent)
         }
 
         confirmButton.setOnClickListener {
 
             val intent = Intent(this, MapActivity::class.java)
-            intent.putExtra("p1lat", p1lat)
-            intent.putExtra("p1long", p1long)
-            intent.putExtra("p2lat", classMain.permLocationArr2[0]?.latitude)
-            intent.putExtra("p2long", classMain.permLocationArr2[0]?.longitude)
+            intent.putExtra("p1latMap", p1latBack)
+            intent.putExtra("p1longMap", p1longBack)
+            intent.putExtra("p2latMap", classMain.permLocationArr2[0]?.latitude)
+            intent.putExtra("p2longMap", classMain.permLocationArr2[0]?.longitude)
+            Log.d("Coords_presend", "p1: " + p1long + " " + p1lat)
+            startActivity(intent)
 
         }
 
