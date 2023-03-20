@@ -89,19 +89,17 @@ class RouteActivity : AppCompatActivity() {
             }
 
             Log.d("permloc", "permLoc = " + classMain.permLocationArr1[0].toString())
-
-        }
-
-
-
-        if (classMain.permLocationArr1[0] != null) {
             Log.d("permloc", "permLOCATION != null")
+
             val adapter = ArrayAdapter(
                 this,
-                android.R.layout.simple_spinner_item, classMain.permLocationArr1
+                android.R.layout.simple_spinner_item, locationArr1
             )
             fromSpinner.adapter = adapter
+
         }
+
+
 
         if(toSpinner!= null && !intent.hasExtra("spinnerLoc")){
 

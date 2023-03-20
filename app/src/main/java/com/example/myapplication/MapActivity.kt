@@ -11,19 +11,24 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.collection.CircularArray
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
 import com.mapbox.maps.extension.style.layers.generated.circleLayer
+import com.mapbox.maps.extension.style.layers.generated.lineLayer
+import com.mapbox.maps.extension.style.layers.properties.generated.LineCap
+import com.mapbox.maps.extension.style.layers.properties.generated.LineJoin
 import com.mapbox.maps.extension.style.sources.generated.geoJsonSource
 import com.mapbox.maps.extension.style.style
 import com.mapbox.maps.plugin.annotation.annotations
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
 import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import kotlinx.coroutines.runBlocking
-import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
+import java.io.InputStream
+import java.nio.charset.Charset
 import java.util.*
 
 
@@ -32,6 +37,10 @@ var p1lat = 0.0
 var p1long = 0.0
 var p2lat = 0.0
 var p2long = 0.0
+
+
+
+
 
 class MapActivity : AppCompatActivity() {
 
@@ -49,7 +58,7 @@ class MapActivity : AppCompatActivity() {
             p2lat = intent.getDoubleExtra("p2latMap", 0.0)
             p2long = intent.getDoubleExtra("p2longMap", 0.0)
 
-            Log.d("Coords", "p1: " + p1long + " " + p1lat)
+            Log.d("Coords", "p1: " + p1long + " " + p1lat + " " + p2long + " " + p2lat)
         }
 
 
@@ -80,10 +89,25 @@ class MapActivity : AppCompatActivity() {
                     circleOpacity(0.5)
                     circleStrokeColor(Color.WHITE)
                 }
+
+                +geoJsonSource(id = "sidewalkConditions") {
+                    url("asset://cib3-nanr.geojson")
+                    cluster(false)
+                }
+                +lineLayer("linelayer", "sidewalkConditions") {
+                    lineCap(LineCap.ROUND)
+                    lineJoin(LineJoin.ROUND)
+                    lineOpacity(0.7)
+                    lineWidth(8.0)
+                    lineColor("#880808")
+                }
             },
             object : Style.OnStyleLoaded {
                 override fun onStyleLoaded(style: Style) {
-                    addAnnotationToMap()
+                    addAnnotationToMap(Point.fromLngLat(p1long, p1lat))
+                    addAnnotationToMap(Point.fromLngLat(p2long, p2lat))
+
+                    addSideWalkLayer()
                     // Map is set up and the style has loaded. Now you can add data or make other map adjustments.
                 }
             }
@@ -102,21 +126,20 @@ class MapActivity : AppCompatActivity() {
 
         pointAnnotationManager?.create(pointAnnotationOptions)
 
-//        mapView?.getMapboxMap()?.getStyle{
-//            style -> geoJsonSource("transit_stops") {
-//                "asset://Transit_Stops_for_King_County_Metro___transitstop_point.geojson"}
-//            circleLayer("transit_layer", "transit_stops"){
-//                circleRadius(20.0)
-//                circleColor(Color.RED)
-//                circleOpacity(0.3)
-//                circleStrokeColor(Color.WHITE)
-//            }
-//        }
+
 
 
     }
 
-    private fun addAnnotationToMap() {
+
+
+    private fun addSideWalkLayer()
+    {
+
+    }
+
+
+    private fun addAnnotationToMap(p: Point) {
 // Create an instance of the Annotation API and get the PointAnnotationManager.
         // Create an instance of the Annotation API and get the PointAnnotationManager.
         bitmapFromDrawableRes(
@@ -128,7 +151,7 @@ class MapActivity : AppCompatActivity() {
             // Set options for the resulting symbol layer.
             val pointAnnotationOptions: PointAnnotationOptions = PointAnnotationOptions()
             // Define a geographic coordinate.
-                .withPoint(Point.fromLngLat(p1long, p1lat))
+                .withPoint(p)
                 // Specify the bitmap you assigned to the point annotation
                 // The bitmap will be added to map style automatically.
                 .withIconImage(it)
