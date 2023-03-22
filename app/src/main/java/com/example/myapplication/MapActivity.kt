@@ -15,6 +15,9 @@ import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
+import com.mapbox.maps.extension.style.expressions.dsl.generated.eq
+import com.mapbox.maps.extension.style.expressions.dsl.generated.get
+import com.mapbox.maps.extension.style.expressions.generated.Expression
 import com.mapbox.maps.extension.style.layers.generated.circleLayer
 import com.mapbox.maps.extension.style.layers.generated.lineLayer
 import com.mapbox.maps.extension.style.layers.properties.generated.LineCap
@@ -39,7 +42,9 @@ var p2lat = 0.0
 var p2long = 0.0
 
 
-
+/**
+* THIS CLASS USES CODE FROM MAPBOX DOCUMENTATION FOR MAP MARKERS
+*/
 
 
 class MapActivity : AppCompatActivity() {
@@ -101,6 +106,7 @@ class MapActivity : AppCompatActivity() {
                     lineWidth(8.0)
                     lineColor("#880808")
                 }
+                
             },
             object : Style.OnStyleLoaded {
                 override fun onStyleLoaded(style: Style) {
@@ -111,6 +117,7 @@ class MapActivity : AppCompatActivity() {
                     // Map is set up and the style has loaded. Now you can add data or make other map adjustments.
                 }
             }
+
         )
 
 

@@ -27,6 +27,9 @@ class RouteActivity : AppCompatActivity() {
     var p1longBack: Double = 0.0
     var p1latBack: Double = 0.0
 
+    val locationArr1 = arrayOfNulls<SavedLocation>(1)
+
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,11 +76,12 @@ class RouteActivity : AppCompatActivity() {
 
             Log.d("locArr 1", "peek: " + startLocationStack.peek().toString())
 
-            val locationArr1 = arrayOfNulls<SavedLocation>(1)
+
 
             if(!startLocationStack.empty()) {
 
-                locationArr1[0] = startLocationStack.pop()
+                emptyStack(startLocationStack, 0)
+                //locationArr1[0] = startLocationStack.pop()
             }
 
             Log.d("permloc", "tempArr = " + locationArr1[0].toString())
@@ -98,7 +102,6 @@ class RouteActivity : AppCompatActivity() {
             fromSpinner.adapter = adapter
 
         }
-
 
 
         if(toSpinner!= null && !intent.hasExtra("spinnerLoc")){
@@ -171,6 +174,21 @@ class RouteActivity : AppCompatActivity() {
         }
 
     }
+    private fun emptyStack(s : Stack<SavedLocation>, i : Int): Array<SavedLocation?> {
+
+        //base case
+        if(s.isEmpty()){
+            return locationArr1
+        }
+
+        locationArr1[i] = s.pop()
+        var d = i + 1
+
+        //call function recursively
+        return emptyStack(s, d)
+
+    }
+
 
 //    fun addLocationStack(s: SavedLocation){
 //        locationStack.add(s)

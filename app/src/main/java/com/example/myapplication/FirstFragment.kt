@@ -25,9 +25,6 @@ class FirstFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
 
-
-
-
     ): View? {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
@@ -41,14 +38,10 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener()
         {
-            if (binding.etUserName.text.toString().equals("a") && binding.etPassword.text.toString().equals("b")){
-                Toast.makeText(activity, ":D", Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            }
 
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             //Toast.makeText(activity, binding.etUserName.text, Toast.LENGTH_LONG).show()
-            Toast.makeText(activity, binding.etPassword.text, Toast.LENGTH_SHORT).show()
+
         }
     }
 

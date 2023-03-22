@@ -20,9 +20,18 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MapDataSource {
     String url;
+    String filter;
+
 
     public MapDataSource(String url){
         this.url = url;
+    }
+
+    public MapDataSource(String url, String filter){
+        this.url = url;
+
+        this.filter = filter;
+
     }
 
     public JSONObject getDataSource() {
