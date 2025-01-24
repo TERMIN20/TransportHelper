@@ -8,7 +8,7 @@ For example, some areas have less than ideal sidewalk conditions, or even lack t
 mile solutions like scooters to function in these conditions. I would like to address this issue by using the large amount of publicly
 available real-time data currently available.
 
-Solution
+
 Considering the nature of the problem, I have decided to make a mobile application using Android Studio to represent publicly available
 information on bus locations and sidewalk conditions. 
 CityTrack uses public databases and APIs to gather information important for the average commuter and represent them on an easy-to-read map. 
